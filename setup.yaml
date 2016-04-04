@@ -5,10 +5,8 @@
 
   - tags: [apt]
     block:
-    - name: apt cache
-      apt: update_cache=yes
-    - name: apt installs
-      apt: name={{ item }}
+    - apt: update_cache=yes
+    - apt: name={{ item }}
       with_items:
         - vim
         - git
@@ -20,65 +18,46 @@
 
   - tags: [compose]
     block:
-    - name: docker-compose install
-      pip: name=docker-compose
+    - pip: name=docker-compose
 
   - tags: [atom]
     block:
-    - name: atom dl
-      get_url: url=https://atom.io/download/deb dest=/tmp/atom.deb
-    - name: atom install
-      apt: deb=/tmp/atom.deb
+    - get_url: url=https://atom.io/download/deb dest=/tmp/atom.deb
+    - apt: deb=/tmp/atom.deb
 
   - tags: [slack]
     block:
-    - name: slack dl
-      get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-2.0.3-amd64.deb dest=/tmp/slack.deb
-    - name: slack install
-      apt: deb=/tmp/slack.deb
+    - get_url: url=https://downloads.slack-edge.com/linux_releases/slack-desktop-2.0.3-amd64.deb dest=/tmp/slack.deb
+    - apt: deb=/tmp/slack.deb
 
   - tags: [chrome]
     block:
-    - name: chrome key
-      apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
-    - name: chrome repo
-      apt_repository: repo='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
-    - name: chrome install
-      apt: name=google-chrome-stable update_cache=yes
+    - apt_key: url=https://dl-ssl.google.com/linux/linux_signing_key.pub
+    - apt_repository: repo='deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main'
+    - apt: name=google-chrome-stable update_cache=yes
 
   - tags: [sbt]
     block:
-    - name: sbt key
-      apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=642AC823
-    - name: sbt repo
-      apt_repository: repo='deb https://dl.bintray.com/sbt/debian /'
-    - name: sbt install
-      apt: name=sbt update_cache=yes
+    - apt_key: keyserver=hkp://keyserver.ubuntu.com:80 id=642AC823
+    - apt_repository: repo='deb https://dl.bintray.com/sbt/debian /'
+    - apt: name=sbt update_cache=yes
 
   - tags: [amm]
     block:
-    - name: ammonite dl
-      get_url:  url=https://git.io/vafIQ dest=/usr/local/bin/amm
-    - name: ammonite mode
-      file: path=/usr/local/bin/amm mode=u+x,g+x,o+x
+    - get_url:  url=https://git.io/vafIQ dest=/usr/local/bin/amm
+    - file: path=/usr/local/bin/amm mode=u+x,g+x,o+x
 
   - tags: [intellij]
     block:
-    - name: intellij dl
-      unarchive: src=https://download.jetbrains.com/idea/ideaIC-2016.1.tar.gz dest=/var/lib/ copy=no creates=/var/lib/idea-IC-145.258.11/
+    - unarchive: src=https://download.jetbrains.com/idea/ideaIC-2016.1.tar.gz dest=/var/lib/ copy=no creates=/var/lib/idea-IC-145.258.11/
 
   - tags: [fish]
     block:
-    - name: fish repo
-      apt_repository: repo=ppa:fish-shell/release-2
-    - name: fish install
-      apt: name=fish update_cache=yes
-    - name: fish chsh
-      user: name=tobias shell=/usr/bin/fish
+    - apt_repository: repo=ppa:fish-shell/release-2
+    - apt: name=fish update_cache=yes
+    - user: name=tobias shell=/usr/bin/fish
 
   - tags: [hub]
     block:
-    - name: hub dl
-      unarchive: src=https://github.com/github/hub/releases/download/v2.2.3/hub-linux-amd64-2.2.3.tgz dest=/tmp copy=no creates=/tmp/hub-linux-amd64-2.2.3
-    - name: hub install
-      command: /tmp/hub-linux-amd64-2.2.3/install
+    - unarchive: src=https://github.com/github/hub/releases/download/v2.2.3/hub-linux-amd64-2.2.3.tgz dest=/tmp copy=no creates=/tmp/hub-linux-amd64-2.2.3
+    - command: /tmp/hub-linux-amd64-2.2.3/install creates=/usr/local/bin/hub
