@@ -61,3 +61,7 @@
     block:
     - unarchive: src=https://github.com/github/hub/releases/download/v2.2.3/hub-linux-amd64-2.2.3.tgz dest=/tmp copy=no creates=/tmp/hub-linux-amd64-2.2.3
     - command: /tmp/hub-linux-amd64-2.2.3/install creates=/usr/local/bin/hub
+
+  - tags: [ack]
+    block:
+    - apt: name=ack-grep
