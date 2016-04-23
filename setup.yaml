@@ -5,7 +5,7 @@
 
   - tags: [apt]
     block:
-    - apt: update_cache=yes
+    # - apt: update_cache=yes
     - apt: name={{ item }}
       with_items:
         - vim
@@ -15,6 +15,13 @@
         - maven
         - python-setuptools
         - python-pip
+        - tree
+        - ack-grep
+        - terminator
+        - p7zip-full
+        - jq
+        - vagrant
+        - virtualbox
 
   - tags: [compose]
     block:
@@ -62,6 +69,13 @@
     - unarchive: src=https://github.com/github/hub/releases/download/v2.2.3/hub-linux-amd64-2.2.3.tgz dest=/tmp copy=no creates=/tmp/hub-linux-amd64-2.2.3
     - command: /tmp/hub-linux-amd64-2.2.3/install creates=/usr/local/bin/hub
 
-  - tags: [ack]
+  - tags: [gnome-shell]
     block:
-    - apt: name=ack-grep
+    - apt: name=gnome-shell
+    - apt_repository: repo=ppa:ne0sight/chrome-gnome-shell
+    - apt: name=chrome-gnome-shell update_cache=yes
+
+  - tags: [grub-customizer]
+    block:
+    - apt_repository: repo=ppa:danielrichter2007/grub-customizer validate_certs=no
+    - apt: name=grub-customizer update_cache=yes
