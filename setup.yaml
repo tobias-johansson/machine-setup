@@ -10,6 +10,7 @@
       with_items:
         - vim
         - git
+        - tig
         - docker.io
         - openjdk-8-jdk
         - maven
@@ -22,6 +23,8 @@
         - jq
         - vagrant
         - virtualbox
+        - task
+        - nodejs
 
   - tags: [compose]
     block:
