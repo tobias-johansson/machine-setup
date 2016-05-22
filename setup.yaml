@@ -59,7 +59,7 @@
 
   - tags: [intellij]
     block:
-    - unarchive: src=https://download.jetbrains.com/idea/ideaIC-2016.1.2b.tar.gz dest=/var/lib/ copy=no creates=/var/lib/idea-IC-145.258.11/
+    - unarchive: src=https://download.jetbrains.com/idea/ideaIC-2016.1.2b.tar.gz dest=/var/lib/ copy=no creates=/var/lib/idea-IC-145.972.3/
 
   - tags: [fish]
     block:
