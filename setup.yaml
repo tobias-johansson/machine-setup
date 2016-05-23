@@ -25,6 +25,7 @@
         - virtualbox
         - task
         - nodejs
+        - httpie
 
   - tags: [compose]
     block:
